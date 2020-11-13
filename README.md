@@ -1,1 +1,28 @@
-# microservice-cloud
+# microservice-example
+
+## Embedded solution
+> how to xx
+
+### Distributed/versioned configuration
+1. build module
+
+
+
+### Service registration and discovery
+
+### Routing
+
+### Service-to-service calls
+
+### Load balancing
+
+### Circuit Breakers
+
+### Global locks
+
+### Leadership election and cluster state
+
+### Distributed messaging
+
+## Service Mesh solution
+> TODO
