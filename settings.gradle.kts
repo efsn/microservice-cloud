@@ -1,3 +1,5 @@
 rootProject.name = "microservice-example"
 
-include("discovery")
+include("service-discovery")
+include("service-registry1")
+include("service-registry2")

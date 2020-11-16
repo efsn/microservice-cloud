@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: hello-service
+
+server:
+  port: 8802
+
+eureka:
+#  instance:
+#    hostname: localhost
+  client:
+#    register-with-eureka: false
+#    fetch-registry: false
+    service-url.defaultZone: http://localhost:8701/eureka
+
+spring.cloud.loadbalancer.ribbon.enabled: false

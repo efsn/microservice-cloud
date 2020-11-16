@@ -5,7 +5,7 @@ plugins {
     java
     kotlin("jvm") version "1.4.10"
     kotlin("plugin.spring") version "1.4.10"
-    id("org.springframework.boot") version "2.4.0"
+    id("org.springframework.boot") version "2.3.6.RELEASE"
 }
 
 repositories { jcenter() }
@@ -30,11 +30,13 @@ subprojects {
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
         implementation(platform(SpringBootPlugin.BOM_COORDINATES))
-        implementation(platform("org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR8"))
+        implementation(platform("org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR9"))
 
         implementation("org.slf4j:slf4j-api")
         implementation("ch.qos.logback:logback-core")
         implementation("ch.qos.logback:logback-classic")
+
+        annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
         testImplementation("org.springframework.boot:spring-boot-starter-test") {
             exclude(group = "org.junit.vintage")
