@@ -1,5 +1,10 @@
 rootProject.name = "microservice-example"
 
-include("service-discovery")
-include("service-registry1")
-include("service-registry2")
+files("netflix", "consul").forEach { dir ->
+    dir.listFiles().forEach {
+        if (it.isDirectory) {
+            include(it.name)
+            project(":${it.name}").projectDir = it
+        }
+    }
+}
