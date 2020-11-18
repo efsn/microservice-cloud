@@ -1,0 +1,60 @@
+version: '3.3'
+services:
+  consul-agent-1: &consul-agent
+    image: consul
+    container_name: node-agent-1
+    depends_on:
+      - consul-server-1
+      - consul-server-2
+    networks:
+      - consul-demo
+    command: "agent -retry-join consul-server-bootstrap -node node-agent-1 -client 0.0.0.0"
+
+  consul-agent-2:
+    <<: *consul-agent
+    container_name: node-agent-2
+    command: "agent -retry-join consul-server-bootstrap -node=node-agent-2 -client 0.0.0.0"
+
+  consul-agent-3:
+    <<: *consul-agent
+    container_name: node-agent-3
+    command: "agent -retry-join consul-server-bootstrap -node=node-agent-3 -client 0.0.0.0"
+
+  consul-server-1: &consul-server
+    image: consul
+    container_name: node-server-1
+    networks:
+      - consul-demo
+    depends_on:
+      - consul-server-bootstrap
+    command: "agent -server -retry-join consul-server-bootstrap -node=node-server-1 -client 0.0.0.0"
+
+  consul-server-2:
+    <<: *consul-server
+    container_name: node-server-2
+    command: "agent -server -retry-join consul-server-bootstrap -node=node-server-2 -client 0.0.0.0"
+
+  consul-server-bootstrap:
+    image: consul
+    container_name: node-server
+    networks:
+      - consul-demo
+    ports:
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:8600"
+      - "8600:8600/udp"
+    command: "agent -server -bootstrap-expect 3 -node=node-server -ui -client 0.0.0.0"
+
+  portainer:
+    image: portainer/portainer
+    environment:
+      TZ: "Asia/Shangsha"
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+  consul-demo:
+

@@ -36,6 +36,7 @@ subprojects {
         implementation("ch.qos.logback:logback-core")
         implementation("ch.qos.logback:logback-classic")
 
+        developmentOnly("org.springframework.boot:spring-boot-devtools")
         annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:2.3.6.RELEASE")
 
         testImplementation("org.springframework.boot:spring-boot-starter-test") {
