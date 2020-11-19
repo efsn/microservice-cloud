@@ -1,20 +1,37 @@
 server:
   port: 8080
 
-ribbon:
-  ServerListRefreshInterval: 1000
+spring:
+  application:
+    name: consul-producer-app
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        prefer-ip-address: true
+        ip-address: host.docker.internal
+        enabled: false
+        register: true
 
-endpoints:
-  health:
-    sensitive: false
-  restart:
-    enabled: true
-  shutdown:
-    enabled: true
+        instance-group: demo
+        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}
+        service-name: sn-${spring.application.name}
 
-management:
-  security:
-    enabled: false
+        enableTagOverride: true
+        tags: foo=bar, baz
+
+#endpoints:
+#  health:
+#    sensitive: false
+#  restart:
+#    enabled: true
+#  shutdown:
+#    enabled: true
+#
+#management:
+#  security:
+#    enabled: false
 
 logging.level:
   org.springframework.cloud.consul: DEBUG

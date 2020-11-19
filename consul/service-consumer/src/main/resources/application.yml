@@ -1,20 +1,29 @@
+server:
+  port: 8080
+
 spring:
   application:
-    name: hello-service
+    name: consul-
+  cloud:
+    consul:
+      discovry:
+        enabled: false
+        register: true
 
-server:
-  port: 8801
+ribbon:
+  ServerListRefreshInterval: 1000
 
-eureka:
-#  instance:
-#    hostname: localhost
-  client:
-    service-url:
-      defaultZone: http://localhost:8701/eureka
-    healthcheck:
-      enable: true
-#    register-with-eureka: false
-#    fetch-registry: false
-#    service-url.defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+endpoints:
+  health:
+    sensitive: false
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
 
-#spring.cloud.loadbalancer.ribbon.enabled: false
+management:
+  security:
+    enabled: false
+
+logging.level:
+  org.springframework.cloud.consul: DEBUG
