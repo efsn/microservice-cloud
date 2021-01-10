@@ -9,14 +9,13 @@ spring:
       host: localhost
       port: 8500
       discovery:
-        prefer-ip-address: true
-        ip-address: host.docker.internal
+        hostname: host.docker.internal
         enabled: false
         register: true
 
         instance-group: demo
-        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}
-        service-name: sn-${spring.application.name}
+        instance-id: ${spring.application.name}:${spring.cloud.client.hostname}
+        service-name: ${spring.application.name}
 
         enableTagOverride: true
         tags: foo=bar, baz

@@ -1,1 +1,1 @@
-spring.application.name: testConsulApp
+spring.application.name: consul-producer-app

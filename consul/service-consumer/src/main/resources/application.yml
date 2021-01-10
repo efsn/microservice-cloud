@@ -1,14 +1,18 @@
 server:
-  port: 8080
+  port: 8090
+
+external:
+  hello: consul-producer-app
 
 spring:
   application:
-    name: consul-
+    name: consul-consumer-app
   cloud:
     consul:
-      discovry:
-        enabled: false
-        register: true
+      host: localhost
+      port: 8510
+      discovery:
+        register: false
 
 ribbon:
   ServerListRefreshInterval: 1000
@@ -27,3 +31,5 @@ management:
 
 logging.level:
   org.springframework.cloud.consul: DEBUG
+
+debug: true

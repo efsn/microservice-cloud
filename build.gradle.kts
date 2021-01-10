@@ -36,6 +36,8 @@ subprojects {
         implementation("ch.qos.logback:logback-core")
         implementation("ch.qos.logback:logback-classic")
 
+        implementation("com.microsoft.azure:applicationinsights-spring-boot-starter:2.6.2")
+
         developmentOnly("org.springframework.boot:spring-boot-devtools")
         annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:2.3.6.RELEASE")
 

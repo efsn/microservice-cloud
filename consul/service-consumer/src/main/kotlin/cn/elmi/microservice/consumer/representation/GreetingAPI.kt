@@ -28,14 +28,17 @@ class GreetingAPI(
     @Value("\${spring.application.name:xx}")
     private lateinit var appName: String
 
+    @Value("\${external.hello:xx}")
+    private lateinit var helloAppName: String
+
     @RequestMapping("me")
     fun me() = registration
 
     @RequestMapping("rest")
-    fun rest() = restTemplate.getForObject("http://$appName/me", String::class.java)
+    fun rest() = restTemplate.getForObject("http://$helloAppName/hi", String::class.java)
 
     @RequestMapping("choose")
-    fun choose() = loadBalancer.choose(appName).uri.toString()
+    fun choose() = loadBalancer.choose(helloAppName).uri.toString()
 
     @RequestMapping("env")
     fun env(@RequestParam prop: String) = env.getProperty(prop, "not found")
@@ -43,8 +46,8 @@ class GreetingAPI(
     @RequestMapping("instances")
     fun instances() = discoveryClient.getInstances(appName)
 
-    @RequestMapping("feign")
-    fun feign() = sampleClient.choose()
+    @RequestMapping("feign/{word}")
+    fun feign(@RequestParam word: String) = sampleClient.choose(word)
 }
 
 @Configuration
@@ -54,8 +57,8 @@ class Configure {
     fun restTemplate() = RestTemplate()
 }
 
-@FeignClient("testConsulApp")
+@FeignClient("consul-producer-app")
 interface SampleClient {
-    @RequestMapping("choose", method = [RequestMethod.GET])
-    fun choose(): String
+    @RequestMapping("/hi/{word}", method = [RequestMethod.GET])
+    fun choose(@RequestParam word: String): String
 }
