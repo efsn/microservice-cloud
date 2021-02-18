@@ -1,6 +1,6 @@
 rootProject.name = "microservice-example"
 
-files("netflix1", "consul").forEach { dir ->
+files("common", "consul1").forEach { dir ->
     dir.listFiles()?.forEach {
         if (it.isDirectory) {
             include(it.name)
@@ -9,4 +9,4 @@ files("netflix1", "consul").forEach { dir ->
     }
 }
 
-include("gateway")
+//include("gateway")

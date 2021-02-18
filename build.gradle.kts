@@ -2,10 +2,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
-    java
-    kotlin("jvm") version "1.4.10"
-    kotlin("plugin.spring") version "1.4.10"
-    id("org.springframework.boot") version "2.3.6.RELEASE"
+    `java-library`
+    kotlin("jvm") version "1.4.21"
+    kotlin("plugin.spring") version "1.4.21"
+    id("org.springframework.boot") version "2.4.2"
 }
 
 repositories { jcenter() }
@@ -30,22 +30,15 @@ subprojects {
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
         implementation(platform(SpringBootPlugin.BOM_COORDINATES))
-        implementation(platform("org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR9"))
+        implementation(platform("org.springframework.cloud:spring-cloud-dependencies:2020.0.0"))
+        implementation(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.4.2"))
+        implementation(platform("io.jsonwebtoken:jjwt-root:0.11.2"))
 
         implementation("org.slf4j:slf4j-api")
         implementation("ch.qos.logback:logback-core")
         implementation("ch.qos.logback:logback-classic")
 
-        implementation("com.microsoft.azure:applicationinsights-spring-boot-starter:2.6.2")
-
         developmentOnly("org.springframework.boot:spring-boot-devtools")
-        annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:2.3.6.RELEASE")
-
-        testImplementation("org.springframework.boot:spring-boot-starter-test") {
-            exclude(group = "org.junit.vintage")
-        }
-        testImplementation("org.junit.jupiter:junit-jupiter-api")
-        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
     }
 
     tasks {
@@ -63,8 +56,8 @@ subprojects {
             dependsOn(project.tasks.named("ktlint"))
         }
 
-        bootJar {
-            launchScript()
-        }
+//        bootJar {
+//            launchScript()
+//        }
     }
 }

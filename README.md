@@ -1,5 +1,18 @@
 # microservice-example
 
+## Common
+- Security OAuth2 JWT solution
+  - `Authorization`
+    - `withSubscription`
+    - Coroutine`coroutineScope`
+- Data
+  - [] Data Xx
+  - [] Data Redis `Cache`
+  - [] Data PostgreSQL
+    - [] Json Binder
+    - [] CURD
+
+
 ## Embedded solution
 > how to xx
 
