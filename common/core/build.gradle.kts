@@ -24,7 +24,7 @@ dependencies {
 
     // jwt
     api("io.jsonwebtoken:jjwt-api")
-    runtimeOnly("io.jsonwebtoken:jjwt-impl")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.2")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson")
 
     // reactor

@@ -3,9 +3,9 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
     `java-library`
-    kotlin("jvm") version "1.4.21"
-    kotlin("plugin.spring") version "1.4.21"
-    id("org.springframework.boot") version "2.4.2"
+    kotlin("jvm") version "1.5.31"
+    kotlin("plugin.spring") version "1.5.31"
+    id("org.springframework.boot") version "2.5.5"
 }
 
 repositories { jcenter() }
@@ -21,8 +21,8 @@ subprojects {
     version = "0.1-SNAPSHOT"
 
     repositories {
+        mavenLocal()
         mavenCentral()
-        jcenter()
     }
 
     dependencies {
@@ -30,9 +30,10 @@ subprojects {
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
         implementation(platform(SpringBootPlugin.BOM_COORDINATES))
-        implementation(platform("org.springframework.cloud:spring-cloud-dependencies:2020.0.0"))
-        implementation(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.4.2"))
+        implementation(platform("org.springframework.cloud:spring-cloud-dependencies:2020.0.4"))
+        implementation(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.5.2"))
         implementation(platform("io.jsonwebtoken:jjwt-root:0.11.2"))
+//        implementation(platform("org.keycloak.bom:keycloak-adapter-bom:11.0.2"))
 
         implementation("org.slf4j:slf4j-api")
         implementation("ch.qos.logback:logback-core")
@@ -44,7 +45,7 @@ subprojects {
     tasks {
         withType<KotlinCompile> {
             kotlinOptions {
-                jvmTarget = JavaVersion.VERSION_1_8.toString()
+                jvmTarget = JavaVersion.VERSION_11.toString()
                 freeCompilerArgs = listOf("-Xjsr305=strict")
             }
         }

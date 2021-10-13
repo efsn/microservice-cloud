@@ -59,4 +59,5 @@ services:
 
 networks:
   consul-demo:
+    driver: bridge
 

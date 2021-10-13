@@ -10,3 +10,4 @@ files("common", "consul1").forEach { dir ->
 }
 
 //include("gateway")
+//include("security")
