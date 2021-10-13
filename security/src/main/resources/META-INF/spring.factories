@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+cn.elmi.security.configuration.SecurityAutoConfiguration,\
+cn.elmi.security.configuration.SecurityDisabledAutoConfiguration

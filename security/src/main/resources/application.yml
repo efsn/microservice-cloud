@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+#keycloak:
+#  auth-server-url: http:localhost:8180/auth
+#  realm: demo
+#  resource: demo-app
+#  public-client: true
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: demo-app
+            client-secret: 2b4bb004-e84a-4617-8daa-1bf56fae9f44
+#            authorization-grant-type: xx
+#            redirect-uri: ss
+#            scope: xx
+
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8181/auth/realms/demo
+#            token-uri:
+#            authorization-uri:
+#            authorization-uri: x
+#            token-uri: x
+
+security:
+  enabled: true
+  component: demo
+  services:
+    - iss: http://localhost:8181/auth/realms/demo
+  whitelisted:
+    - /demo/put:PUT
+    - /demo/post:POST
+
+debug: true
